@@ -30,13 +30,6 @@ const Square = ({ children, isSelected, updatedBoard, index }) => {
   )
 }
 
-const checkEndGame = (newBoard) => {
-  // revisamos si hay un empate
-  // si no hay más espacios vacíos
-  // en el tablero
-  return newBoard.every((square) => square !== null)
-}
-
 function App() {
 
   const [ board, setBoard] = useState(Array(9).fill(null));
@@ -68,6 +61,13 @@ function App() {
     return null
   }
 
+  const checkEndGame = (newBoard) => {
+    // revisamos si hay un empate
+    // si no hay más espacios vacíos
+    // en el tablero
+    return newBoard.every((square) => square !== null)
+  }
+
   const updatedBoard = (index) => {
     if (board[index] || winner) return;
 
@@ -81,6 +81,8 @@ function App() {
     const newWinner = checkWinnerFrom(newBoard);
     if (newWinner) {
       setWinner(newWinner)
+    } else if (checkEndGame(newBoard)) {
+      setWinner(false)
     }
   }
 
@@ -92,14 +94,14 @@ function App() {
 
       <section className='game'>
         {
-          board.map((_, index) => {
+          board.map((square, index) => {
             return (
               <Square
                 key={index}
                 index={index}
                 updatedBoard={updatedBoard}
               >
-                {board[index]}
+                {square}
               </Square>
             )
           })
