@@ -17,7 +17,7 @@ function App () {
       userName: 'batman',
       name: 'Bruce Wayne'
     }
-  ]
+  ];
   return (
     <section className='App'>
       {
@@ -30,11 +30,11 @@ function App () {
               name={name}
               formatUserName={formatUserName}
             />
-          )
+          );
         })
       }
     </section>
-  )  
+  );
 }
 
 export default App;

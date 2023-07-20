@@ -6,20 +6,18 @@ import { TURNS } from './constants';
 import { checkEndGame, checkWinnerFrom } from './logic/board';
 import { WinnerModal } from './components/WinnerModal';
 
-function App() {
-
-  const [ board, setBoard] = useState(() => {
+function App () {
+  const [board, setBoard] = useState(() => {
     const boardFromStorage = window.localStorage.getItem('board');
-    return boardFromStorage ? JSON.parse(boardFromStorage) : Array(9).fill(null)
+    return boardFromStorage ? JSON.parse(boardFromStorage) : Array(9).fill(null);
   });
 
-  const [ turn, setTurn] = useState(() => {
+  const [turn, setTurn] = useState(() => {
     const turnFromStorage = window.localStorage.getItem('turn');
-    console.log(turnFromStorage)
     return turnFromStorage ? turnFromStorage : TURNS.X;
   });
 
-  const [ winner, setWinner] = useState(null);
+  const [winner, setWinner] = useState(null);
 
   const resetGame = () => {
     setBoard(Array(9).fill(null));
@@ -28,7 +26,7 @@ function App() {
 
     window.localStorage.removeItem('board');
     window.localStorage.removeItem('turn');
-  }
+  };
 
   const updatedBoard = (index) => {
     if (board[index] || winner) return;
@@ -45,12 +43,12 @@ function App() {
 
     const newWinner = checkWinnerFrom(newBoard);
     if (newWinner) {
-      confetti()
-      setWinner(newWinner)
+      confetti();
+      setWinner(newWinner);
     } else if (checkEndGame(newBoard)) {
-      setWinner(false)
+      setWinner(false);
     }
-  }
+  };
 
   return (
     <main className='board'>
@@ -69,7 +67,7 @@ function App() {
               >
                 {square}
               </Square>
-            )
+            );
           })
         }
       </section>
@@ -86,7 +84,7 @@ function App() {
 
       <WinnerModal winner={winner} resetGame={resetGame} />
     </main>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -1,23 +1,23 @@
 import { useState } from 'react';
 
 function TwitterFollowCard ({ formatUserName, userName, name }) {
-  const [ isFollowing, setIsFollowing ] = useState(false); 
-  
+  const [isFollowing, setIsFollowing] = useState(false);
+
   const text = isFollowing ? 'Siguiendo' : 'Seguir';
   const buttonClassName = isFollowing
-  ? 'tw-followCard-button is-following'
-  : 'tw-followCard-button';
+    ? 'tw-followCard-button is-following'
+    : 'tw-followCard-button';
 
   const handleClick = () => {
     setIsFollowing(!isFollowing);
-  }
+  };
 
   return (
     <article className="tw-followCard">
       <header className="tw-followCard-header">
         <img
-          className="tw-followCard-avatar" 
-          alt="Avatar de Edel-blk" 
+          className="tw-followCard-avatar"
+          alt="Avatar de Edel-blk"
           src={`https://unavatar.io/${userName}`}
         />
 
@@ -34,7 +34,7 @@ function TwitterFollowCard ({ formatUserName, userName, name }) {
         </button>
       </aside>
     </article>
-  )
+  );
 }
 
 export default TwitterFollowCard;
